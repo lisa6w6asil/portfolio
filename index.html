@@ -1,28 +1,98 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>マウス回転キューブ</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="scene">
-  <div class="cube" id="cube">
-    <div class="face front"><span class="face-text">WEBデザイン</span></div>
-    <div class="face back"><span class="face-text">グラフィックス</span></div>
-    <div class="face right"><span class="face-text">動画編集</span></div>
-    <div class="face left"><span class="face-text">カメラ</span></div>
-    <div class="face top"><span class="face-text">ライティング</span></div>
-    <div class="face bottom"><span class="face-text">About</span></div>
-  </div>
-</div>
+  <head>
+    <meta charset="utf-8">
+    <title>My Work - Portfolio</title>
+    <meta name="description" content="テキストテキストテキストテキストテキストテキストテキストテキスト">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
 
-<div id="mini-card" class="mini-card"></div>
+  <body>
+    <header id="header">
+      <h1 class="site-title"><a href="index.html"><img src="img/logo.svg" alt="My Work"></a></h1>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#works">Works</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a href="https://www.instagram.com/2525guruguru" target="_blank">
+              <img class="icon" src="./image/icon-instagram.png" alt="インスタグラム">
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-    </div>
-  </div>
+    <main>
+        <div id="mainvisual">
+            <div class="bg-image" id="bg-image"></div>
+          
+            <div class="center-text" id="center-text">テキストテキスト</div>
+          
+            <div class="menu">
+              <div class="menu-item" data-image="img/bg1.jpg" data-text="WEB Design"><p>WEB-Design</p></div>
+              <div class="menu-item" data-image="img/bg2.jpg" data-text="Application"><p>Application</p></div>
+              <div class="menu-item" data-image="img/bg3.jpg" data-text="Video Editing"><p>Video-Editing</p></div>
+              <div class="menu-item" data-image="img/bg4.jpg" data-text="Photography"><p>Photography</p></div>
+              <div class="menu-item" data-image="img/bg5.jpg" data-text="Writing"><p>Writing</p></div>
+              <div class="menu-item" data-image="img/bg6.jpg" data-text="About Me"><p>About</p></div>
+            </div>
+          </div>
+          
+          
 
-  <script src="script.js"></script>
-</body>
+      <section id="works" class="wrapper">
+        <h2 class="sec-title">Works</h2>
+        <ul>
+          <li><img src="img/works1.jpg" alt="テキストテキストテキスト"></li>
+          <li><img src="img/works2.jpg" alt="テキストテキストテキスト"></li>
+          <li><img src="img/works3.jpg" alt="テキストテキストテキスト"></li>
+          <li><img src="img/works4.jpg" alt="テキストテキストテキスト"></li>
+          <li><img src="img/works5.jpg" alt="テキストテキストテキスト"></li>
+          <li><img src="img/works6.jpg" alt="テキストテキストテキスト"></li>
+        </ul>
+      </section>
+
+      <section id="about" class="wrapper">
+        <h2 class="sec-title">About</h2>
+        <ul>
+          <li>Xxxxx Ashley</li>
+          <li>2th Floor xxxxx Building x-x-x Nishiazabu, Minato-ku, Tokyo 106-0031 Japan</li>
+          <li>tel: 000-0000-0000</li>
+          <li>url: www.xxxxxx.jp</li>
+          <li>mail: xxx@xxxxxx.jp</li>
+        </ul>
+        <p>
+          プロフィールテキストテキストテキストテキストテキストテキストテキストテキストテキストスト
+          テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+          テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
+      </section>
+
+      <section id="contact" class="wrapper">
+        <h2 class="sec-title">Contact</h2>
+        <form action="#" method="post">
+          <dl>
+            <dt><label for="name">NAME</label></dt>
+            <dd><input type="text" id="name" name="your-name"></dd>
+            <dt><label for="email">E-mail</label></dt>
+            <dd><input type="email" id="email" name="your-email"></dd>
+            <dt><label for="message">MESSAGE</label></dt>
+            <dd><textarea id="message" name="your-message"></textarea></dd>
+          </dl>
+          <div class="button"><input type="submit" value="送信"></div>
+        </form>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <p>&copy; 2020 My Work</p>
+    </footer>
+
+  </body>
+
 </html>
