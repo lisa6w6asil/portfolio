@@ -1,6 +1,4 @@
 const cube = document.getElementById('cube');
-const cubeWrapper = document.querySelector('.cube-wrapper');
-
 
 let autoRotateX = 0;
 let autoRotateY = 0;
@@ -8,15 +6,9 @@ let currentX = 0;
 let currentY = 0;
 let isHovering = false;
 
-let hasResonated = false;
-let resetTimeout;
-let resonanceTimeout;
-let isResonating = false;
-
 // 自動回転（ホバーしていないとき）
 function autoRotate() {
-  if (!isHovering && !isResonating) {
-    autoRotateX += 0.3;
+  if (!isHovering) {
     autoRotateY += 0.3;
     currentX = autoRotateX;
     currentY = autoRotateY;
@@ -26,133 +18,142 @@ function autoRotate() {
 }
 autoRotate();
 
-// ホバー中のマウス移動で自由回転
-let hoverTimer = null;
-let leaveTimeout = null;
-let resonanceActive = false;
-
+// ホバー検出（ホバー中はマウス移動で自由に回転）
 document.addEventListener('mousemove', (e) => {
+  if (!isHovering) return;
+
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;
   const deltaX = e.clientX - centerX;
   const deltaY = e.clientY - centerY;
 
-  // --- マウス追従による回転 ---
-  if (isHovering) {
-    currentY += deltaX * 0.02;
-    currentX -= deltaY * 0.02;
-    updateTransform();
-  }
+  currentY += deltaX * 0.03; // Y軸回転は制限なし
+  currentX -= deltaY * 0.03;
 
-  // --- 中央20%共鳴判定 ---
-  const distX = Math.abs(deltaX);
-  const distY = Math.abs(deltaY);
-  const radiusX = window.innerWidth * 0.2 / 2;
-  const radiusY = window.innerHeight * 0.2 / 2;
+  // X軸回転を制限（上下反転防止）
+  currentX = Math.min(90, Math.max(-90, currentX));
 
-  if (distX <= radiusX && distY <= radiusY) {
-    // マウスが中央20％内
-    if (!hoverTimer && !resonanceActive) {
-      hoverTimer = setTimeout(() => {
-        resonanceActive = true;
-        document.body.style.backgroundColor = '#fff';
-        hoverTimer = null;
-      }, 1000);
-    }
-    if (leaveTimeout) {
-      clearTimeout(leaveTimeout);
-      leaveTimeout = null;
-    }
-  } else {
-    // 中央外に出た
-    if (hoverTimer) {
-      clearTimeout(hoverTimer);
-      hoverTimer = null;
-    }
-    if (resonanceActive && !leaveTimeout) {
-      leaveTimeout = setTimeout(() => {
-        resonanceActive = false;
-        document.body.style.backgroundColor = '#000';
-        leaveTimeout = null;
-      }, 500);
-    }
-  }
+  updateTransform();
 });
-
 
 
 // ホバー状態を管理
 cube.addEventListener('mouseenter', () => {
   isHovering = true;
-  clearTimeout(resetTimeout);
 });
+let revertTimeout = null;
+
 cube.addEventListener('mouseleave', () => {
   isHovering = false;
   autoRotateX = currentX;
   autoRotateY = currentY;
 
-  clearTimeout(resonanceTimeout);
-  stopResonance(true); // 強制停止
+  clearTimeout(revertTimeout);
+  revertTimeout = setTimeout(() => {
+    document.body.style.backgroundColor = '#000'; // ← 元の背景色（白）に戻す
+  }, 500);
 });
 
-// 回転適用
+
+// 回転を適用
 function updateTransform() {
-  cube.style.setProperty('--current-x', `${currentX}deg`);
-  cube.style.setProperty('--current-y', `${currentY}deg`);
   cube.style.transform = `rotateX(${currentX}deg) rotateY(${currentY}deg)`;
 }
-
-
-// === 中央から20%の共鳴検出 ===
-const centerThreshold = Math.min(window.innerWidth, window.innerHeight) * 0.2;
+// === 共鳴エフェクト（中央30%範囲で背景色変化） ===
+let resonanceTimeout = null;
+let isResonating = false;
 
 document.addEventListener('mousemove', (e) => {
+  if (!isHovering) return;
+
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;
-  const dist = Math.hypot(e.clientX - centerX, e.clientY - centerY);
+  const maxRadius = Math.min(window.innerWidth, window.innerHeight) * 0.5;
 
-  if (dist < centerThreshold) {
-    if (!isResonating) {
-      startResonance(); // 揺れを即時開始
-    }
+  const distance = Math.sqrt(
+    Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2)
+  );
 
-    if (!hasResonated && !resonanceTimeout) {
+  if (distance < maxRadius) {
+    if (!resonanceTimeout && !isResonating) {
       resonanceTimeout = setTimeout(() => {
-        document.body.style.backgroundColor = '#fff'; // 1秒経過で白に変化
-        hasResonated = true;
-      }, 1000);
+        document.body.style.transition = 'background-color 1.5s ease';
+        document.body.style.backgroundColor = '#f0f4ff'; // 共鳴カラー
+        isResonating = true;
+      }, 1000); // ← ここを1秒に変更
     }
   } else {
     clearTimeout(resonanceTimeout);
-    stopResonance(false); // 揺れ止め＆背景戻し処理
+    resonanceTimeout = null;
+
+    if (isResonating) {
+      document.body.style.backgroundColor = '#ffffff';
+      isResonating = false;
+    }
   }
 });
 
-// === 揺れ処理 ===
-function startResonance() {
-  isResonating = true;
-  cube.classList.add('shake');
+const miniCard = document.getElementById('mini-card');
+let hoverTimeout = null;
 
-  // 3秒後に背景変化 & 揺れストップ
-  resonanceTimeout = setTimeout(() => {
-    document.body.style.backgroundColor = '#fff'; // 背景を白に
-    hasResonated = true;
-    stopResonance(false); // 揺れ止め
-  }, 3000);
-}
+const faceInfo = {
+  front: 'WEBデザインに関する詳細情報',
+  back: 'グラフィックスに関する詳細情報',
+  right: '動画編集に関する詳細情報',
+  left: 'カメラに関する詳細情報',
+  top: 'ライティングに関する詳細情報',
+  bottom: 'Aboutページの詳細情報',
+};
 
-function stopResonance(forceReset) {
-  if (!isResonating) return;
+// 面ごとのイメージカラー（例）
+const faceColors = {
+  front: '#ff6f61',    // WEBデザイン：赤系
+  back: '#6a9fb5',     // グラフィックス：青系
+  right: '#f4a261',    // 動画編集：オレンジ系
+  left: '#2a9d8f',     // カメラ：緑系
+  top: '#e9c46a',      // ライティング：黄色系
+  bottom: '#264653',   // About：紺系
+};
 
-  isResonating = false;
-  cube.classList.remove('shake');
-  clearTimeout(resonanceTimeout);
-  resonanceTimeout = null;
+document.querySelectorAll('.face').forEach(face => {
+  face.addEventListener('mousemove', (e) => {
+    const rect = face.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const rangeX = rect.width * 0.2 / 2;
+    const rangeY = rect.height * 0.2 / 2;
 
-  if (hasResonated || forceReset) {
-    resetTimeout = setTimeout(() => {
-      document.body.style.backgroundColor = '#000'; // 背景を黒に戻す
-      hasResonated = false;
-    }, 500);
-  }
-}
+    if (
+      e.clientX >= centerX - rangeX &&
+      e.clientX <= centerX + rangeX &&
+      e.clientY >= centerY - rangeY &&
+      e.clientY <= centerY + rangeY
+    ) {
+      if (!hoverTimeout) {
+        hoverTimeout = setTimeout(() => {
+          const faceClass = Array.from(face.classList).find(c =>
+            Object.keys(faceInfo).includes(c)
+          );
+          if (faceClass) {
+            miniCard.textContent = faceInfo[faceClass];
+            miniCard.classList.add('visible');
+            // 面ごとのイメージカラーに背景色変更
+            document.body.style.backgroundColor = faceColors[faceClass];
+          }
+        }, 500);
+      }
+    } else {
+      clearTimeout(hoverTimeout);
+      hoverTimeout = null;
+      miniCard.classList.remove('visible');
+      document.body.style.backgroundColor = '#000'; // 元に戻す
+    }
+  });
+
+  face.addEventListener('mouseleave', () => {
+    clearTimeout(hoverTimeout);
+    hoverTimeout = null;
+    miniCard.classList.remove('visible');
+    document.body.style.backgroundColor = '#000'; // 元に戻す
+  });
+});
