@@ -204,6 +204,12 @@ header h1 {
   background-color: #e5fbe3;
 }
 
+a.work-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 
 /* マウスカーソル View（JS用） */
 .view-cursor {
@@ -282,6 +288,7 @@ header h1 {
   display: inline-block;
   font-size: 18px;
   color: #78C267;
+  text-align: right;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s;
@@ -334,20 +341,22 @@ header h1 {
 
 /* About内容全体のレイアウト */
 .about-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
   gap: 20px;
-  margin-bottom: 0px;
+  align-items: start;
 }
 
 /* 基本のプロフィール画像*/
 .about-photo {
-  width: 200px;
+  width: 600px;
   height: 200px;
   background-color: #D9D9D9;
   border-radius: 8px;
   transition: background-color 0.3s ease;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 /* テキスト */
@@ -357,6 +366,9 @@ header h1 {
   line-height: 1.8;
   color: #333;
   text-align: center;
+  grid-column: 2;
+  grid-row: 1 / 3;
+  
 }
 
 /* フェード＋上方向スライド */
@@ -387,9 +399,11 @@ header h1 {
   width: 100%;
   height: auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 100px;
+  justify-content: left;
+  align-items: left;
+  gap: 50px;
+  grid-column: 1;
+  grid-row: 2;
 }
 
 /* アイコン本体 */
@@ -437,17 +451,27 @@ header h1 {
 }
 
 @media (max-width: 768px) {
+  .about-photo {
+  width: 200px;
+  height: 200px;
+  background-color: #D9D9D9;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  grid-column: 1;
+  grid-row: 1;
+}
+  
   .about-text,
   .about-text p,
   .about-text span {
-    font-size: 0.8rem ;
-    letter-spacing: -0.1em;
+    font-size: 0.75rem ;
+    letter-spacing: 0em;
   }
   
   .icon-wrapper {
     flex-wrap: match;
     height: auto;
-    gap: 10px;
+    gap:5px;
   }
 
   .icon-box {
@@ -458,62 +482,114 @@ header h1 {
 }
 
 /* Skill */
-
-#skill {
-  text-align: left;
-  padding: 80px 40px;
-}
-
-.skill-category {
-  margin-bottom: 60px;
-}
-
-.skill-subtitle {
-  font-size: 24px;
-  margin: 40px 0 20px;
-  border-left: 4px solid #78C267;
-  padding-left: 16px;
-  display: inline-block;
-  text-align: left;
-  color: #444;
-}
-
-.skill-grid {
+.skill-wrapper {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column; 
+  align-items: center; 
+  gap: 10px; 
+}
+.circle-group {
+  display: flex;
+  gap: 40px;
   justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
 }
 
-.skill-tile {
-  background-color: #D9D9D9;
-  padding: 16px;
-  border-radius: 12px;
-  width: 120px;
+.circle-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  transition: transform 0.3s ease;
+  gap: 8px;
 }
 
-.skill-tile:hover {
-  transform: translateY(-5px);
-  background-color: #e4f5e0;
-}
-
-.skill-tile img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-
-.skill-tile span {
+.skill-label {
   font-size: 14px;
+  text-align: center;
   color: #333;
 }
 
+.skill-circle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* 中央の小さい白円 */
+.inner-circle {
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+  font-weight: bold;
+  color: black;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.inner-circle span {
+  font-size: 12px;
+}
+
+/* SVGで進捗表示 */
+.progress-ring {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  z-index: 1;
+  transform: rotate(-90deg);
+}
+
+.progress-ring circle {
+  fill: none;
+  stroke-width: 8;
+  r: 40;
+  cx: 50;
+  cy: 50;
+}
+
+.progress-ring .bg {
+  stroke: #eee;
+}
+
+.progress-ring .progress {
+  stroke: #78C267;
+  stroke-dasharray: 251.2;
+  stroke-dashoffset: 251.2;
+  transition: stroke-dashoffset 1s ease;
+}
+
+/* ホバー(251.2∗(1−0.80)=50.24)*/
+.skill-circle.great:hover .progress-ring .progress {
+  stroke-dashoffset: 62.8;
+}
+.skill-circle.good:hover .progress-ring .progress {
+  stroke-dashoffset: 100.48;
+}
+
+.skill-circle.ok:hover .progress-ring .progress {
+  stroke-dashoffset: 118.064;
+}
+
+
+@media (max-width: 768px) {
+  .skill-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: left;
+  align-items: left;
+}
+}
 /* Contact */
 
 .contact-button-wrapper {
