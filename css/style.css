@@ -199,6 +199,12 @@ header h1 {
   overflow: hidden;
 }
 
+.work-item img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
 .work-item:hover {
   transform: translateY(-5px);
   background-color: #e5fbe3;
@@ -359,6 +365,12 @@ a.work-link {
   grid-row: 1;
 }
 
+.about-photo img {
+  width: 600px;
+  height: 200px;
+  object-fit: cover;
+}
+
 /* テキスト */
 .about-text {
   max-width: 600px;
@@ -459,6 +471,12 @@ a.work-link {
   transition: background-color 0.3s ease;
   grid-column: 1;
   grid-row: 1;
+}
+
+.about-photo img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
   
   .about-text,
