@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -25,23 +26,34 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
   </header>
-  <!-- メインビジュアル -->
-  <section id="mainvisual">
-    <div class="slider">
-      <div class="slide active"><img src="img/slide1.jpg" alt="スライド1"></div>
-    <div class="slide"><img src="img/slide2.jpg" alt="スライド2"></div>
-    <div class="slide"><img src="img/slide3.jpg" alt="スライド3"></div>
-    <div class="slide"><img src="img/slide4.jpg" alt="スライド4"></div>
-    <div class="slide"><img src="img/slide5.jpg" alt="スライド5"></div>
-    </div>
-    <div class="dots">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
-  </section>
+<section id="mainvisual" class="hero">
+  <!-- スライド枠 -->
+  <div class="slider slideshow">
+    <div class="slide active"style="background-color: #D9D9D9;"></div>
+    <div class="slide" style="background-color: #78C267;"></div>
+    <div class="slide"style="background-color: #8B1C3B;"></div>
+    <div class="slide" style="background-color: #000000;"></div>
+    <div class="slide" style="background-color: #F5F5DC;"></div>
+  </div>
+
+  <!-- ドットナビゲーション -->
+  <div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+ 
+  <!-- 右寄せメニュー -->
+  <div class="main-visual">
+    <a href="#work" class="menu-item">WORK</a>
+    <a href="#about" class="menu-item">ABOUT</a>
+    <a href="#skill" class="menu-item">SKILL</a>
+    <a href="#contact" class="menu-item">CONTACT</a>
+  </div>
+ <!-- 左スライド -->
+</section>
   <section id="work" class="section">
   <h2>Work</h2>
 
@@ -51,7 +63,7 @@
     <div class="work-grid">
       <div class="work-item work-popular">
         <a href="https://" class="work-link">
-  <img src="work1.jpg" alt="My Portfolio">
+  <img src="image/web1.jpg" alt="My Portfolio">
   <h4>始まり</h4>
   <p class="work-desc"><br>多方面のスキルを<br>活かしすぎず<br>伝えたい事をまっすぐ伝える<br>シンプルなデザインを<br>意識しました。</p>
 </a>
@@ -149,27 +161,28 @@
   <h2>About</h2>
 
   <div class="about-content">
-    <div class="about-photo"><img src="image/me1.JPEG" alt="xxxxx"></div>
+    <div class="about-photo"><img src="image/me1.jpg" alt="me1"></div>
     <div class="icon-wrapper">
-    <div class="icon-box icon1"><p>TAP</p></div>
-    <div class="icon-box icon2"><p>TAP</p></div>
-    <div class="icon-box icon3"><p>TAP</p></div>
-    <div class="icon-box icon4"><p>TAP</p></div>
+    <div class="icon-box icon1" data-src="image/me2.jpg" data-alt="me2"style="background-color:#78C267;"><p>TAP</p></div>
+    <div class="icon-box icon2" data-src="image/me3.jpg" data-alt="me3"style="background-color:#8B1C3B";><p>TAP</p></div>
+    <div class="icon-box icon3" data-src="image/me4.jpg" data-alt="me4"style="background-color:#000000"><p>TAP</p></div>
+    <div class="icon-box icon4" data-src="image/me5.jpg" data-alt="me5"style="background-color:#F5F5DC"><p>TAP</p></div>
   </div>
     <div class="about-text">
       <p>
         私は「伝わる力」を信じて<br>
         さまざまな媒体を通じて<br>表現の仕事に取り組んでいます。<br>
-        登録販売者・FP3級・ITパスポートなどの資格を活かし<br>
-        多角的な視点で<br>「差し出せる手札」を増やしてきました。<br>
+        登録販売者<br>FP3級<br>ITパスポートなどの資格を活かし<br>
+        多角的な視点で<br>「差し出せる手札」を増やしました<br>
         信頼に応えるアウトプットを<br>誠実に重ねていける<br>
-        そんな人間でありたいと思っています。
+        表現者でありたいと思います。
       </p>
     </div>
+</div>
   </div>
 </section>
   
-<section class="section">
+<section class="section" id="skill">
   <h2>Skills</h2>
 <div class="skill-wrapper">
   <div class="circle-group">
@@ -184,7 +197,8 @@
           <span>GREAT</span>
         </div>
       </div>
-      <div class="skill-label">テキストテキストテキ<br>ストテキストテキスト<br>テキストテキストテキ</div>
+      <div class="skill-label">HTML/CSS<br>JavaScript
+<br>Figma<br>Premiere Pro<br>After Effects<br>Lightroom</div>
     </div>
 
     <div class="circle-item">
@@ -197,7 +211,7 @@
           <span>GOOD</span>
         </div>
       </div>
-      <div class="skill-label">テキストテキストテキ<br>ストテキストテキスト<br>テキストテキストテキ</div>
+      <div class="skill-label">Photoshop<br>Illustrator<br>Canva<br>Clip Studio Paint</div>
     </div>
 
     <div class="circle-item">
@@ -210,7 +224,7 @@
           <span>OK</span>
         </div>
       </div>
-      <div class="skill-label">テキストテキストテキ<br>ストテキストテキスト<br>テキストテキストテキ</div>
+      <div class="skill-label">WordPress<br>Git / GitHub<br>Notion<br>Google Analytics<br>SEO基礎</div>
     </div>
   </div>
 </div>
@@ -218,8 +232,6 @@
 <!-- Contactセクション -->
 <section id="contact" class="section">
   <h2>Contact</h2>
-
-  <!-- フォーム削除して、ボタンだけに -->
   <div class="contact-button-wrapper">
     <a href="mailto:youremail@example.com?subject=お仕事のご依頼&body=カネコリサさんへ" class="contact-button">
       カネコリサに依頼する
