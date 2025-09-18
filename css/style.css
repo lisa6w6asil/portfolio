@@ -363,23 +363,6 @@ a.work-link {
 
 
 
-@media (max-width: 768px) {
-
-  /* 1列 */
-.work-grid {
-  display: grid;
-  grid-template-columns: auto;
-  gap: 30px;
-  margin-left: 20px;
-}
-  .work-item h4,
-  .work-item p{
-  font-size: 10px;
-  margin-top: 12px;
-}
-
-}
-
 /* About */
 .about-section {
   position: relative; 
@@ -506,79 +489,6 @@ a.work-link {
 }
 
 
-@media (max-width: 768px) {
-  
-  .about-content {
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-    gap: 10px;
-    align-items: start;
-  }
-  
-  /* 基本のプロフィール画像*/
-  .about-photo {
-    background-color: #D9D9D9;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-    grid-column: 1;
-    grid-row: 1;
-  }
-  
-  .about-photo img {
-    width: 100%;
-    height: auto;
-  }
-  
-  
-  /* テキスト */
-  .about-text {
-    max-width: 600px;
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: #333;
-    text-align: center;
-    grid-column: 1;
-    grid-row: 3;
-    
-  }
-    
-  .icon-wrapper {
-    flex-wrap: match;
-    height: auto;
-    justify-content: center;
-    align-items: center;
-    gap: 1px;
-  }
-
-  .icon-box {
-    width: 40px;
-    height: 40px;
-    margin: 8px;
-    gap: 1px;
-  }
-}
-
-/* フェード＋上方向スライド */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* アニメーション */
-@keyframes float {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(0); }
-  100% { transform: translateY(0); }
-}
-
-
 /* Skill */
 .skill-wrapper {
   display: flex;
@@ -679,15 +589,7 @@ a.work-link {
 }
 
 
-@media (max-width: 768px) {
-  .skill-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: left;
-  align-items: left;
-}
-}
+
 /* Contact */
 
 .contact-button-wrapper {
@@ -753,9 +655,5 @@ footer {
   color: #999;
 }
 
-@media (max-width: 768px) {
-  .footer-message {
-    font-size: 0.5rem ;
-  }
-}
+
 
