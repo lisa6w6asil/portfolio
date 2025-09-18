@@ -503,7 +503,6 @@ a.work-link {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
-  gap: 3px;
   align-items: start;
 }
   
@@ -520,16 +519,15 @@ a.work-link {
 .about-photo img {
   width: 100%;
   max-width: 200px;
-  height: 180px;
+  height: 200px;
 }
   
   .about-text,
   .about-text p,
   .about-text span {
     width: 30ch;
-  text-align: right;
+  text-align: left;
   word-break: break-all;
-  margin-left: auto;
     font-size: 0.75rem ;
     letter-spacing: 0em;
   }
@@ -537,14 +535,14 @@ a.work-link {
   .icon-wrapper {
     flex-wrap: match;
     height: auto;
-    gap:3px;
+    gap: 1px;
   }
 
   .icon-box {
     width: 40px;
     height: 40px;
     margin: 8px;
-    gap:3px;
+    gap: 1px;
   }
 }
 
