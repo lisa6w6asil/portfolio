@@ -501,8 +501,8 @@ a.work-link {
   
   .about-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  grid-template-rows: auto;
   align-items: start;
 }
   
@@ -526,7 +526,7 @@ a.work-link {
   .about-text p,
   .about-text span {
     width: 30ch;
-  text-align: left;
+  text-align: center;
   word-break: break-all;
     font-size: 0.75rem ;
     letter-spacing: 0em;
