@@ -1,54 +1,54 @@
 // --------------------------
 // スライダー + カラー切替 + ドット対応
-// --------------------------
-let slideIndex = 0;
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
 
-// カラーリスト（本番では src に差し替え可能）
-const slideColors = [
-  "#D9D9D9",   
-  "#78C267",   
-  "#8B1C3B",   
-  "#000000",   
-  "#F5F5DC"    
-];
+// let slideIndex = 0;
+// const slides = document.querySelectorAll('.slide');
+// const dots = document.querySelectorAll('.dot');
 
-// スライドを表示する関数
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.remove('active');
-    dots[i].classList.remove('active');
+// // カラーリスト（本番では src に差し替え可能）
+// const slideColors = [
+//   "#D9D9D9",   
+//   "#78C267",   
+//   "#8B1C3B",   
+//   "#000000",   
+//   "#F5F5DC"    
+// ];
+
+// // スライドを表示する関数
+// function showSlide(index) {
+//   slides.forEach((slide, i) => {
+//     slide.classList.remove('active');
+//     dots[i].classList.remove('active');
     
-    if (i === index) {
-      slide.classList.add('active');
-      dots[i].classList.add('active');
-    }
+//     if (i === index) {
+//       slide.classList.add('active');
+//       dots[i].classList.add('active');
+//     }
 
-    // テスト時は背景色で切替
-    slide.style.backgroundColor = slideColors[i % slideColors.length];
-  });
-}
+//     // テスト時は背景色で切替
+//     slide.style.backgroundColor = slideColors[i % slideColors.length];
+//   });
+// }
 
-// 次のスライドへ
-function nextSlide() {
-  slideIndex = (slideIndex + 1) % slides.length;
-  showSlide(slideIndex);
-}
+// // 次のスライドへ
+// function nextSlide() {
+//   slideIndex = (slideIndex + 1) % slides.length;
+//   showSlide(slideIndex);
+// }
 
-// 初期表示
-showSlide(slideIndex);
+// // 初期表示
+// showSlide(slideIndex);
 
-// 自動再生（5秒ごと）
-setInterval(nextSlide, 5000);
+// // 自動再生（5秒ごと）
+// setInterval(nextSlide, 5000);
 
-// ドットクリックで手動切替
-dots.forEach((dot, i) => {
-  dot.addEventListener('click', () => {
-    slideIndex = i;
-    showSlide(slideIndex);
-  });
-});
+// // ドットクリックで手動切替
+// dots.forEach((dot, i) => {
+//   dot.addEventListener('click', () => {
+//     slideIndex = i;
+//     showSlide(slideIndex);
+//   });
+// });
 
 
 // --------------------------

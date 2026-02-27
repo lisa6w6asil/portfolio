@@ -108,7 +108,7 @@ header h1 {
   overflow: hidden;
 }
 
-/* スライド枠 */
+/* スライド枠
 .slider {
   position: relative;
   width: 90%;
@@ -118,7 +118,7 @@ header h1 {
   align-items: center;
 }
 
-/* 各スライド */
+/* 各スライド 
 .slide {
   position: absolute;
   width: 90%;
@@ -133,7 +133,7 @@ header h1 {
   opacity: 1;
 }
 
-/* ドット */
+/* ドット 
 .dots {
   position: absolute;
   bottom: 30px;
@@ -155,6 +155,26 @@ header h1 {
 
 .dot.active {
   background-color: #333;
+} */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
 }
 
 /* 右寄せメニュー */
